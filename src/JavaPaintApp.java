@@ -20,7 +20,7 @@ public class JavaPaintApp {
             public void actionPerformed(ActionEvent e) {
                 Color initialBackground = selectOutlineColorButton.getBackground();
                 Color background = JColorChooser.showDialog(null,
-                    "JColorChooser Sample", initialBackground);
+                    "Shape Outline Color Picker", initialBackground);
                 if (background != null) {
                     selectOutlineColorButton.setBackground(background);
                 }
@@ -32,7 +32,7 @@ public class JavaPaintApp {
             public void actionPerformed(ActionEvent e) {
                 Color initialBackground = selectFillColorButton.getBackground();
                 Color background = JColorChooser.showDialog(null,
-                    "JColorChooser Sample", initialBackground);
+                    "Shape Fill Color Picker", initialBackground);
                 if (background != null) {
                     selectFillColorButton.setBackground(background);
                 }
