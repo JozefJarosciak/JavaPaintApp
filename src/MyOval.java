@@ -1,2 +1,2 @@
-public class MyOval extends MyRoundedShape {
+public class MyOval extends MyBoundedShape {
 }

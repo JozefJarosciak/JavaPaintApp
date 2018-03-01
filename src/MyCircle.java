@@ -1,2 +1,2 @@
-public class MyCircle extends MyRoundedShape {
+public class MyCircle extends MyBoundedShape {
 }
