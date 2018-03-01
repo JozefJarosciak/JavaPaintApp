@@ -20,16 +20,16 @@
         </properties>
         <border type="none" title="Menu"/>
         <children>
-          <component id="942e8" class="javax.swing.JButton" binding="outlineColorButton" default-binding="true">
+          <component id="942e8" class="javax.swing.JButton" binding="selectOutlineColorButton" default-binding="true">
             <constraints/>
             <properties>
-              <text value="Outline Color"/>
+              <text value="Select Outline Color"/>
             </properties>
           </component>
-          <component id="f44d" class="javax.swing.JButton" binding="fillColorButton" default-binding="true">
+          <component id="f44d" class="javax.swing.JButton" binding="selectFillColorButton" default-binding="true">
             <constraints/>
             <properties>
-              <text value="Fill Color"/>
+              <text value="Select Fill Color"/>
             </properties>
           </component>
           <component id="3cdbd" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
