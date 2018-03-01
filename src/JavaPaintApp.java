@@ -11,6 +11,7 @@ public class JavaPaintApp {
     private JToolBar toolbar;
 
     public static void main(String[] args) {
+
         // Setup the form details
         JFrame frame = new JFrame("Java Paint Application)");
         frame.setContentPane(new JavaPaintApp().mainpanel);
