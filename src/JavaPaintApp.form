@@ -55,6 +55,7 @@
             <properties>
               <model>
                 <item value="Select Shape"/>
+                <item value="Line"/>
                 <item value="Rectangle"/>
                 <item value="Oval"/>
                 <item value="Circle"/>
