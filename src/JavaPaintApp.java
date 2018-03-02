@@ -1,11 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.event.*;
+import java.util.LinkedList;
 
-public class JavaPaintApp {
+public class JavaPaintApp extends JPanel{
 
     private JButton selectOutlineColorButton;
     private JButton selectFillColorButton;
@@ -14,16 +12,30 @@ public class JavaPaintApp {
     private JPanel drawingPanel;
     private JToolBar toolbar;
     private JLabel mouseCoordinates;
-
-
+    private JButton CLEARButton;
+    private JButton UNDOButton;
+    private JButton RESETButton;
+    public MyShape currentShapeObject;
+    public String currentShapeType;
+    private Color currentShapeColor;
+    private LinkedList<MyShape> myShapes;
+    private JavaPaintApp2 javaPaintApp2;
+    private int coordinate1,coordinate2,coordinate3,coordinate4;
+    private Graphics graphics;
+    private String[] shapeType= {"Line","Rectangle","Oval" };
     public JavaPaintApp() {
-
+        myShapes = new LinkedList<MyShape>();
+        currentShapeColor=Color.BLACK;
+        setBackground(Color.BLACK);
+        MouseHandler handler = new MouseHandler();
+        addMouseListener( handler );
+        addMouseMotionListener( handler );
         selectOutlineColorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Color initialBackground = selectOutlineColorButton.getBackground();
                 Color background = JColorChooser.showDialog(null,
-                    "Shape Outline Color Picker", initialBackground);
+                        "Shape Outline Color Picker", initialBackground);
                 if (background != null) {
                     selectOutlineColorButton.setBackground(background);
                 }
@@ -35,22 +47,53 @@ public class JavaPaintApp {
             public void actionPerformed(ActionEvent e) {
                 Color initialBackground = selectFillColorButton.getBackground();
                 Color background = JColorChooser.showDialog(null,
-                    "Shape Fill Color Picker", initialBackground);
+                        "Shape Fill Color Picker", initialBackground);
                 if (background != null) {
                     selectFillColorButton.setBackground(background);
                 }
             }
         });
 
-        drawingPanel.addMouseMotionListener(new MouseMotionAdapter() {
-            @Override
-            public void mouseMoved(MouseEvent e) {
-                super.mouseMoved(e);
-                mouseCoordinates.setText("Mouse Coordinates: " + e.getX() + ", " + e.getY());
-            }
-        });
+    }
+    private void drawimages(){
+        graphics=getGraphics();
     }
 
+    private class MouseHandler extends MouseAdapter {
+        @Override
+        public void mousePressed(MouseEvent event) {
+            coordinate1 = event.getX();
+            coordinate3 = event.getY();
+            drawimages();
+            coordinate2 = coordinate1;
+            coordinate4 = coordinate3;
+        }
+
+
+        public void mouseReleased(MouseEvent event) {
+
+
+        }
+
+
+        public void mouseMoved(MouseEvent event) {
+            mouseCoordinates.setText(String.format("Mouse Coordinates X: %d Y: %d", event.getX(), event.getY()));
+        }
+
+
+        public void mouseDragged(MouseEvent event) {
+
+            currentShapeObject.setCoordinate2(event.getX());
+            currentShapeObject.setcoordinate4(event.getY());
+            mouseCoordinates.setText(String.format("Mouse Coordinates X: %d Y: %d", event.getX(), event.getY()));
+
+            repaint();
+
+        }
+
+
+
+    }
     public static void main(String[] args) {
 
         // Setup the form details
@@ -65,8 +108,18 @@ public class JavaPaintApp {
         frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
     }
 
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        if (currentShapeObject != null)
+            currentShapeObject.drawshape(graphics);
+    }
 
-    private void createUIComponents() {
+    public void createUIComponents(Graphics graphics) {
         // TODO: place custom component creation code here
     }
+
+
+
+
+
 }

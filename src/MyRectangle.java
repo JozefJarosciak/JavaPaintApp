@@ -1,2 +1,2 @@
-public class MyRectangle extends MyBoundedShape {
+abstract class MyRectangle extends MyBoundedShape {
 }

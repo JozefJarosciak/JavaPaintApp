@@ -1,2 +1,2 @@
-public class MyBoundedShape extends MyShape {
+abstract class MyBoundedShape extends MyShape {
 }
