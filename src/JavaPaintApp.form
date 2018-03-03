@@ -20,22 +20,10 @@
         </properties>
         <border type="none" title="Menu"/>
         <children>
-          <component id="63fc1" class="javax.swing.JButton" binding="CLEARButton">
-            <constraints/>
-            <properties>
-              <text value="Clear"/>
-            </properties>
-          </component>
-          <component id="57adc" class="javax.swing.JButton" binding="UNDOButton">
+          <component id="a751e" class="javax.swing.JButton" binding="REDOButton">
             <constraints/>
             <properties>
               <text value="Undo"/>
-            </properties>
-          </component>
-          <component id="1c8bc" class="javax.swing.JButton" binding="RESETButton">
-            <constraints/>
-            <properties>
-              <text value="Reset"/>
             </properties>
           </component>
           <component id="942e8" class="javax.swing.JButton" binding="selectOutlineColorButton" default-binding="true">
@@ -60,6 +48,12 @@
                 <item value="Oval"/>
                 <item value="Circle"/>
               </model>
+            </properties>
+          </component>
+          <component id="63fc1" class="javax.swing.JButton" binding="CLEARButton">
+            <constraints/>
+            <properties>
+              <text value="Clear"/>
             </properties>
           </component>
         </children>
