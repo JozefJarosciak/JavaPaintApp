@@ -55,7 +55,6 @@ public class JavaPaintApp extends JPanel {
                 //currentShape.drawshape(drawingPanel.getGraphics());
                 //drawingPanel.repaint();
                 drawingPanel.getGraphics().drawRect(e.getX(), e.getY(),e.getX(), e.getY());
-                //  repaint();
             }
 
             @Override
