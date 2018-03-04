@@ -49,12 +49,12 @@ public class JavaPaintApp extends JPanel {
             public void mouseMoved(MouseEvent e) {
                 super.mouseMoved(e);
                 mouseCoordinates.setText("Mouse Coordinates: " + e.getX() + ", " + e.getY());
-                currentShape = new MyLine( e.getX(), e.getY(),e.getX(), e.getY(), Color.green);
+                currentShape = new MyRectangle( e.getX(), e.getY(),e.getX(), e.getY(), Color.green);
                 currentShape.setCoordinate2(e.getX());
                 currentShape.setcoordinate4(e.getY());
                 //currentShape.drawshape(drawingPanel.getGraphics());
                 //drawingPanel.repaint();
-                drawingPanel.getGraphics().drawLine(e.getX(), e.getY(),e.getX(), e.getY());
+                drawingPanel.getGraphics().drawRect(e.getX(), e.getY(),e.getX(), e.getY());
                 //  repaint();
             }
 
