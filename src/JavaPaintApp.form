@@ -45,6 +45,7 @@
                 <item value="Select Shape"/>
                 <item value="Line"/>
                 <item value="Rectangle"/>
+                <item value="Rounded Rectangle"/>
                 <item value="Oval"/>
                 <item value="Circle"/>
               </model>

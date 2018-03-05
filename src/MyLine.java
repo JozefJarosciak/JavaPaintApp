@@ -17,6 +17,7 @@ public class MyLine extends MyShape {
     //method instance to draw image implementation
     @Override
     public void drawShape(Graphics2D graphics){
+        graphics.setColor( getOutlineColor() );
         graphics.drawLine (getCoordinate1(),getCoordinate2(),getCoordinate3(),getCoordinate4());
     }
 }
