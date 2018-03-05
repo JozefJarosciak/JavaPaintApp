@@ -1,31 +1,35 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class JavaPaintApp extends JPanel {
 
-    private JButton selectOutlineColorButton;
-    private JButton selectFillColorButton;
-    private JComboBox comboBox1;
-    private JPanel mainpanel;
-    private JPanel drawingPanel;
-    private JToolBar toolbar;
-    private JLabel mouseCoordinates;
-    private JButton redoButton;
-    private JButton clearButton;
+     JButton selectOutlineColorButton;
+     JButton selectFillColorButton;
+     JComboBox comboBox1;
+     JPanel mainpanel;
+     JPanel drawingPanel;
+     JToolBar toolbar;
+     JLabel mouseCoordinates;
+     JButton clearButton;
     Point startPoint, endPoint;
     String selectedShape = "Line";
     Color fillColor, outlineColor;
+    JColorChooser outlineColorChooser = new JColorChooser();
+    JColorChooser fillColorChooser = new JColorChooser();
+
+    private JavaPaintApp() {
 
 
-    public JavaPaintApp() {
 
 
         selectOutlineColorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Color initialBackground = selectOutlineColorButton.getBackground();
-                outlineColor = JColorChooser.showDialog(null,
+                outlineColor = outlineColorChooser.showDialog(null,
                         "Shape Outline Color Picker", initialBackground);
                 if (outlineColor != null) {
                     selectOutlineColorButton.setBackground(outlineColor);
@@ -37,7 +41,7 @@ public class JavaPaintApp extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Color initialBackground = selectFillColorButton.getBackground();
-                fillColor = JColorChooser.showDialog(null,
+                fillColor = fillColorChooser.showDialog(null,
                         "Shape Fill Color Picker", initialBackground);
                 if (fillColor != null) {
                     selectFillColorButton.setBackground(fillColor);
@@ -80,23 +84,32 @@ public class JavaPaintApp extends JPanel {
         drawingPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (comboBox1.getSelectedItem().toString() != "Select Shape") {
                 super.mouseReleased(e);
                 endPoint = e.getPoint();
                 drawShape(selectedShape);
-                }
                 //System.out.println("mouseReleased: " + e.getX() + ", " + e.getY());
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (comboBox1.getSelectedItem().toString() != "Select Shape") {
                     super.mousePressed(e);
                     startPoint = e.getPoint();
-                }
                // System.out.println("mousePressed: " + e.getX() + ", " + e.getY());
             }
 
+        });
+        mainpanel.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+/*
+                outlineColorChooser.setColor(Color.getColor("#4775BB"));
+                fillColorChooser.setColor(Color.getColor("#F4F4B8"));
+
+                outlineColor = outlineColorChooser.getColor();
+                fillColor  = fillColorChooser.getColor();
+*/
+                comboBox1.requestFocusInWindow();
+            }
         });
     }
 
@@ -149,24 +162,24 @@ public class JavaPaintApp extends JPanel {
     }
 
 
+
+
     public static void main(String[] args) {
 
         // Setup the form details
-        JFrame frame = new JFrame("Java Paint Application)");
-
+        JFrame frame = new JFrame("Java Paint Application");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700, 700);
 
+        frame.setSize(650, 650);
 
         // center on page
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
         frame.setContentPane(new JavaPaintApp().mainpanel);
         frame.setVisible(true);
+
+
     }
 
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }
