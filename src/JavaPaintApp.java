@@ -11,10 +11,8 @@ public class JavaPaintApp extends JPanel {
     private JPanel drawingPanel;
     private JToolBar toolbar;
     private JLabel mouseCoordinates;
-    private JButton REDOButton;
-    private JButton CLEARButton;
-    private MyShape currentShape; //stores the current shape object
-    private Graphics g;
+    private JButton redoButton;
+    private JButton clearButton;
     Point startPoint, endPoint;
     String selectedShape = "Line";
     Color fillColor, outlineColor;
@@ -46,12 +44,18 @@ public class JavaPaintApp extends JPanel {
                 }
             }
         });
+
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clear();
+            }
+        });
+
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ItemSelectable is = (ItemSelectable)e.getSource();
-                System.out.println("Cmd: "+ e.getActionCommand());
-                System.out.println(selectedString(is));
                 selectedShape = selectedString(is);
             }
         });
@@ -69,9 +73,9 @@ public class JavaPaintApp extends JPanel {
             public void mouseDragged(MouseEvent e) {
                 super.mouseDragged(e);
                 System.out.println("mouseDragged: " + e.getX() + ", " + e.getY());
-                currentShape = new MyRectangle( e.getX(), e.getY(),e.getX(), e.getY(), Color.green);
-                currentShape.setCoordinate2(e.getX());
-                currentShape.setcoordinate4(e.getY());
+                // currentShape = new MyRectangle( e.getX(), e.getY(),e.getX(), e.getY(), Color.green);
+                // currentShape.setCoordinate2(e.getX());
+                // currentShape.setCoordinate4(e.getY());
                 //currentShape.drawshape(drawingPanel.getGraphics());
                 //drawingPanel.repaint();
             }
@@ -100,32 +104,29 @@ public class JavaPaintApp extends JPanel {
         });
     }
 
-    /*
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-           if (currentShape != null) {
-            currentShape.drawshape(drawingPanel.getGraphics());
-        }
-    }
-*/
     private String selectedString(ItemSelectable is) {
         Object selected[] = is.getSelectedObjects();
         return ((selected.length == 0) ? "null" : (String)selected[0]);
     }
 
     private void drawShape(String shape){
-        Graphics graphics = drawingPanel.getGraphics();
+        MyShape myShape;
+        Graphics2D graphics = (Graphics2D) drawingPanel.getGraphics();
         graphics.setColor(outlineColor);
+        graphics.setPaint(fillColor);
+
         switch (shape){
             case "Line":
-                graphics.drawLine((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape = new MyLine((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape.drawShape(graphics);
                 break;
             case "Rectangle":
-                graphics.drawRect((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape = new MyRectangle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape.drawShape(graphics);
                 break;
             case "Oval":
-                graphics.drawOval((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape = new MyOval((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape.drawShape(graphics);
                 break;
             case "Circle":
                 graphics.drawOval((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
@@ -135,6 +136,16 @@ public class JavaPaintApp extends JPanel {
                 break;
         }
     }
+
+    public void clear(){
+        System.out.println("Zvauya sei");
+        Graphics2D graphics2D = (Graphics2D) drawingPanel.getGraphics();
+        graphics2D.setPaint(drawingPanel.getBackground());
+        graphics2D.fillRect(0, 0, drawingPanel.getWidth(), drawingPanel.getHeight());
+        graphics2D.setPaint(Color.black);
+        repaint();
+    }
+
 
     public static void main(String[] args) {
 

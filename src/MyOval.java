@@ -1,12 +1,12 @@
 import java.awt.*;
 
-public class MyOval extends MyBoundedShape {
-    public MyOval(int x, int y, int x1, int y1, Color currentShapeColor, boolean currentShapeFilled) {
-        super();
+public class MyOval extends MyRoundedShape {
+    public MyOval(int x, int y, int x1, int y1) {
+        super(x, y, x1, y1);
     }
 
-    public void drawshape(Graphics graphics){
-        graphics.setColor(getchoosencolor());
-        graphics.drawLine (getcoordinate1(),getcoordinate2(),getcoordinate3(),getcoordinate4());
+    @Override
+    public void drawShape(Graphics2D graphics){
+        graphics.fillOval (getCoordinate1(),getCoordinate2(),getCoordinate3(),getCoordinate4());
     }
 }

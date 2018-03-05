@@ -20,7 +20,7 @@
         </properties>
         <border type="none" title="Menu"/>
         <children>
-          <component id="a751e" class="javax.swing.JButton" binding="REDOButton">
+          <component id="a751e" class="javax.swing.JButton" binding="redoButton">
             <constraints/>
             <properties>
               <text value="Undo"/>
@@ -50,7 +50,7 @@
               </model>
             </properties>
           </component>
-          <component id="63fc1" class="javax.swing.JButton" binding="CLEARButton">
+          <component id="63fc1" class="javax.swing.JButton" binding="clearButton">
             <constraints/>
             <properties>
               <text value="Clear"/>
