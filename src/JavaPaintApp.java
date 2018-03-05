@@ -147,6 +147,10 @@ public class JavaPaintApp extends JPanel {
                 myShape = new MyTriangle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
+            case "Square":
+                myShape = new MySquare((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape.drawShape(graphics);
+                break;
             case "Circle":
                 myShape = new MyCircle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
                 myShape.drawShape(graphics);

@@ -10,17 +10,17 @@ public class MyCircle extends MyRoundedShape {
 
         // First let's calculate the distance based on start and end point, which gives us the diameter of circle
         // It's based on Math.hypot, which returns: sqrt(x²+ y²) and that's a distance between x1,y1 and x2,y2
-        int diameter = (int) (Math.hypot(getCoordinate1()-getCoordinate3(), getCoordinate2()-getCoordinate4()));
+        int diameter = (int) (Math.hypot(getX1()- getX2(), getY1()- getY2()));
 
         // Let's draw the circle based on initial X/Y coordinates and calculated distance between start and end point
         graphics.setColor( getFillColor() );
-        graphics.fillOval(getCoordinate1(),getCoordinate2(),diameter,diameter);
+        graphics.fillOval(topLeftX(), topLeftY(),diameter,diameter);
 
         // Then create the outline
         graphics.setColor( getOutlineColor() );
-        graphics.drawOval(getCoordinate1(),getCoordinate2(),diameter,diameter);
+        graphics.drawOval(topLeftX(), topLeftY(),diameter,diameter);
 
-        //System.out.println(getCoordinate1() + " - "  + getCoordinate2()+ " - "  + getCoordinate3()+ " - "  + getCoordinate4());
+        //System.out.println(getX1() + " - "  + getY1()+ " - "  + getX2()+ " - "  + getY2());
         //System.out.println(diameter );
 
     }

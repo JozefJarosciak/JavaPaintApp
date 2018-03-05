@@ -21,15 +21,11 @@ abstract class MyShape {
         this.outlineColor = outlineColor;
     }
 
-    public int getCoordinate1() {
+    public int getX1() {
         return coordinate1;
     }
 
-    public void setCoordinate1(int coordinate1) {
-        this.coordinate1 = coordinate1;
-    }
-
-    public int getCoordinate2() {
+    public int getY1() {
         return coordinate2;
     }
 
@@ -37,7 +33,7 @@ abstract class MyShape {
         this.coordinate2 = coordinate2;
     }
 
-    public int getCoordinate3() {
+    public int getX2() {
         return coordinate3;
     }
 
@@ -45,7 +41,7 @@ abstract class MyShape {
         this.coordinate3 = coordinate3;
     }
 
-    public int getCoordinate4() {
+    public int getY2() {
         return coordinate4;
     }
 

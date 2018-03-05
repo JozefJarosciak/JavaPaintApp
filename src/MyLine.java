@@ -18,6 +18,6 @@ public class MyLine extends MyShape {
     @Override
     public void drawShape(Graphics2D graphics){
         graphics.setColor( getOutlineColor() );
-        graphics.drawLine (getCoordinate1(),getCoordinate2(),getCoordinate3(),getCoordinate4());
+        graphics.drawLine (getX1(), getY1(), getX2(), getY2());
     }
 }

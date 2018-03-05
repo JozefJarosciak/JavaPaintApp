@@ -109,10 +109,11 @@
               <editable value="false"/>
               <model>
                 <item value="Line"/>
+                <item value="Circle"/>
                 <item value="Oval"/>
                 <item value="Rectangle"/>
                 <item value="Rounded Rectangle"/>
-                <item value="Circle"/>
+                <item value="Square"/>
                 <item value="Triangle"/>
               </model>
             </properties>

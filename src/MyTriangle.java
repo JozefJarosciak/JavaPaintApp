@@ -8,8 +8,8 @@ public class MyTriangle extends MyRoundedShape {
     @Override
     public void drawShape(Graphics2D graphics){
 
-        int x[] = {getCoordinate1(), getCoordinate3(), getCoordinate1()+((getCoordinate3()-getCoordinate1())/2)};
-        int y[] = {getCoordinate2(), getCoordinate2(), getCoordinate2()-((getCoordinate3()-getCoordinate1())/2)};
+        int x[] = {getX1(), getX2(), getX1()+((getX2()- getX1())/2)};
+        int y[] = {getY1(), getY1(), getY1()-((getX2()- getX1())/2)};
 
         int n = 3;
 

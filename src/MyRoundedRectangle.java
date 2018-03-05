@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class MyRoundedRectangle extends MyShape {
+public class MyRoundedRectangle extends MyRoundedShape {
     public MyRoundedRectangle(){
         super();
     }
@@ -14,13 +14,13 @@ public class MyRoundedRectangle extends MyShape {
 
         // First I draw the filled rectangle
         graphics.setColor( getFillColor() );
-        graphics.fillRoundRect(getCoordinate1(),getCoordinate2(),getCoordinate3()-getCoordinate1(),getCoordinate4()-getCoordinate2(),20,20);
+        graphics.fillRoundRect(topLeftX(), topLeftY(), width(), height(),20,20);
 
         // Then I create outline
         graphics.setColor( getOutlineColor() );
-        graphics.drawRoundRect(getCoordinate1(),getCoordinate2(),getCoordinate3()-getCoordinate1(),getCoordinate4()-getCoordinate2(),20,20);
+        graphics.drawRoundRect(topLeftX(), topLeftY(), width(), height(),20,20);
 
-        //System.out.println(getCoordinate1() + " - "  + getCoordinate2()+ " - "  + getCoordinate3()+ " - "  + getCoordinate4());
+        //System.out.println(getX1() + " - "  + getY1()+ " - "  + getX2()+ " - "  + getY2());
 }
 
 }

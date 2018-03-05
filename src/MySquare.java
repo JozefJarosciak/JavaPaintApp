@@ -1,7 +1,7 @@
 import java.awt.*;
 
-public class MyOval extends MyRoundedShape {
-    public MyOval(int x, int y, int x1, int y1,Color fillColor, Color outlineColor) {
+public class MySquare extends MyRoundedShape {
+    public MySquare(int x, int y, int x1, int y1, Color fillColor, Color outlineColor) {
         super(x, y, x1, y1, fillColor, outlineColor);
     }
 
@@ -10,12 +10,10 @@ public class MyOval extends MyRoundedShape {
 
         // First I draw the filled rectangle
         graphics.setColor( getFillColor() );
-        graphics.fillOval(topLeftX(), topLeftY(), width(), height());
+        graphics.fillRect(topLeftX(), topLeftY(), width(), width());
 
         // Then I create outline
         graphics.setColor( getOutlineColor() );
-        graphics.drawOval(topLeftX(), topLeftY(), width(), height());
-
-
+        graphics.drawRect(topLeftX(), topLeftY(), width(), width());
     }
 }
