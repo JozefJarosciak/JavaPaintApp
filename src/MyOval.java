@@ -8,13 +8,13 @@ public class MyOval extends MyRoundedShape {
     @Override
     public void drawShape(Graphics2D graphics){
 
-        // First I draw the filled oval
+        // First I draw the filled rectangle
         graphics.setColor( getFillColor() );
-        graphics.fillOval(getCoordinate1(),getCoordinate2(),getCoordinate3(),getCoordinate4());
+        graphics.fillOval(getCoordinate1(),getCoordinate2(),getCoordinate3()-getCoordinate1(),getCoordinate4()-getCoordinate2());
 
         // Then I create outline
         graphics.setColor( getOutlineColor() );
-        graphics.drawOval(getCoordinate1(),getCoordinate2(),getCoordinate3(),getCoordinate4());
+        graphics.drawOval(getCoordinate1(),getCoordinate2(),getCoordinate3()-getCoordinate1(),getCoordinate4()-getCoordinate2());
 
     }
 }

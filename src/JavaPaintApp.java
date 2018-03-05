@@ -127,7 +127,8 @@ public class JavaPaintApp extends JPanel {
                 myShape.drawShape(graphics);
                 break;
             case "Circle":
-                graphics.drawOval((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape = new MyCircle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape.drawShape(graphics);
                 break;
             default:
                 drawingPanel.getGraphics().drawLine((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
@@ -136,7 +137,6 @@ public class JavaPaintApp extends JPanel {
     }
 
     public void clear(){
-        System.out.println("Zvauya sei");
         Graphics2D graphics2D = (Graphics2D) drawingPanel.getGraphics();
         graphics2D.setPaint(drawingPanel.getBackground());
         graphics2D.fillRect(0, 0, drawingPanel.getWidth(), drawingPanel.getHeight());
