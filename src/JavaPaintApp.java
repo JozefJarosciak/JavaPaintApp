@@ -115,15 +115,15 @@ public class JavaPaintApp extends JPanel {
             case "Select Shape":
                 break;
             case "Line":
-                myShape = new MyLine((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape = new MyLine((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Rectangle":
-                myShape = new MyRectangle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape = new MyRectangle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Oval":
-                myShape = new MyOval((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                myShape = new MyOval((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Circle":

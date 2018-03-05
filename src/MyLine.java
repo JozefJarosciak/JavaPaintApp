@@ -8,8 +8,11 @@ public class MyLine extends MyShape {
     public MyLine(int coordinate1,
                   int coordinate2,
                   int coordinate3,
-                  int coordinate4){
-        super(coordinate1, coordinate2, coordinate3, coordinate4);
+                  int coordinate4,
+                  Color fillColor,
+                  Color outlineColor
+    ){
+        super(coordinate1, coordinate2, coordinate3, coordinate4,fillColor,outlineColor);
     }
     //method instance to draw image implementation
     @Override

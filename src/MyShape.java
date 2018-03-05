@@ -12,11 +12,13 @@ abstract class MyShape {
         coordinate4 = 0;
     }
 
-    public MyShape(int coordinate1, int coordinate2, int coordinate3, int coordinate4) {
+    public MyShape(int coordinate1, int coordinate2, int coordinate3, int coordinate4, Color fillColor, Color outlineColor ) {
         this.coordinate1 = coordinate1;
         this.coordinate2 = coordinate2;
         this.coordinate3 = coordinate3;
         this.coordinate4 = coordinate4;
+        this.fillColor = fillColor;
+        this.outlineColor = outlineColor;
     }
 
     public int getCoordinate1() {
