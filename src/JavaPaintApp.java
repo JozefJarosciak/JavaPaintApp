@@ -6,14 +6,14 @@ import java.beans.PropertyChangeListener;
 
 public class JavaPaintApp extends JPanel {
 
-     JButton selectOutlineColorButton;
-     JButton selectFillColorButton;
-     JComboBox comboBox1;
-     JPanel mainpanel;
-     JPanel drawingPanel;
-     JToolBar toolbar;
-     JLabel mouseCoordinates;
-     JButton clearButton;
+    JButton selectOutlineColorButton;
+    JButton selectFillColorButton;
+    JComboBox comboBox1;
+    JPanel mainpanel;
+    JPanel drawingPanel;
+    JToolBar toolbar;
+    JLabel mouseCoordinates;
+    JButton clearButton;
     Point startPoint, endPoint;
     String selectedShape = "Line";
     Color fillColor, outlineColor;
@@ -23,14 +23,12 @@ public class JavaPaintApp extends JPanel {
     private JavaPaintApp() {
 
 
-
-
         selectOutlineColorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Color initialBackground = selectOutlineColorButton.getBackground();
                 outlineColor = outlineColorChooser.showDialog(null,
-                        "Shape Outline Color Picker", initialBackground);
+                    "Shape Outline Color Picker", initialBackground);
                 if (outlineColor != null) {
                     selectOutlineColorButton.setBackground(outlineColor);
                 }
@@ -42,7 +40,7 @@ public class JavaPaintApp extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Color initialBackground = selectFillColorButton.getBackground();
                 fillColor = fillColorChooser.showDialog(null,
-                        "Shape Fill Color Picker", initialBackground);
+                    "Shape Fill Color Picker", initialBackground);
                 if (fillColor != null) {
                     selectFillColorButton.setBackground(fillColor);
                 }
@@ -59,7 +57,7 @@ public class JavaPaintApp extends JPanel {
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ItemSelectable is = (ItemSelectable)e.getSource();
+                ItemSelectable is = (ItemSelectable) e.getSource();
                 selectedShape = selectedString(is);
             }
         });
@@ -92,9 +90,9 @@ public class JavaPaintApp extends JPanel {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                    super.mousePressed(e);
-                    startPoint = e.getPoint();
-               // System.out.println("mousePressed: " + e.getX() + ", " + e.getY());
+                super.mousePressed(e);
+                startPoint = e.getPoint();
+                // System.out.println("mousePressed: " + e.getX() + ", " + e.getY());
             }
 
         });
@@ -115,61 +113,59 @@ public class JavaPaintApp extends JPanel {
 
     private String selectedString(ItemSelectable is) {
         Object selected[] = is.getSelectedObjects();
-        return ((selected.length == 0) ? "null" : (String)selected[0]);
+        return ((selected.length == 0) ? "null" : (String) selected[0]);
     }
 
-    private void drawShape(String shape){
+    private void drawShape(String shape) {
         MyShape myShape;
         Graphics2D graphics = (Graphics2D) drawingPanel.getGraphics();
         graphics.setColor(outlineColor);
         graphics.setPaint(fillColor);
 
-        switch (shape){
+        switch (shape) {
             case "Select Shape":
                 break;
             case "Line":
-                myShape = new MyLine((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape = new MyLine((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Rectangle":
-                myShape = new MyRectangle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape = new MyRectangle((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Rounded Rectangle":
-                myShape = new MyRoundedRectangle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape = new MyRoundedRectangle((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Oval":
-                myShape = new MyOval((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape = new MyOval((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Triangle":
-                myShape = new MyTriangle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape = new MyTriangle((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Square":
-                myShape = new MySquare((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape = new MySquare((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             case "Circle":
-                myShape = new MyCircle((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY(),fillColor, outlineColor);
+                myShape = new MyCircle((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
                 myShape.drawShape(graphics);
                 break;
             default:
-                drawingPanel.getGraphics().drawLine((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
+                drawingPanel.getGraphics().drawLine((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY());
                 break;
         }
     }
 
-    public void clear(){
+    public void clear() {
         Graphics2D graphics2D = (Graphics2D) drawingPanel.getGraphics();
         graphics2D.setPaint(drawingPanel.getBackground());
         graphics2D.fillRect(0, 0, drawingPanel.getWidth(), drawingPanel.getHeight());
         graphics2D.setPaint(Color.black);
         repaint();
     }
-
-
 
 
     public static void main(String[] args) {

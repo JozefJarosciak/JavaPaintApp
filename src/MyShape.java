@@ -12,7 +12,7 @@ abstract class MyShape {
         coordinate4 = 0;
     }
 
-    public MyShape(int coordinate1, int coordinate2, int coordinate3, int coordinate4, Color fillColor, Color outlineColor ) {
+    public MyShape(int coordinate1, int coordinate2, int coordinate3, int coordinate4, Color fillColor, Color outlineColor) {
         this.coordinate1 = coordinate1;
         this.coordinate2 = coordinate2;
         this.coordinate3 = coordinate3;
@@ -29,44 +29,28 @@ abstract class MyShape {
         return coordinate2;
     }
 
-    public void setCoordinate2(int coordinate2) {
-        this.coordinate2 = coordinate2;
-    }
 
     public int getX2() {
         return coordinate3;
     }
 
-    public void setCoordinate3(int coordinate3) {
-        this.coordinate3 = coordinate3;
-    }
 
     public int getY2() {
         return coordinate4;
     }
 
-    public void setCoordinate4(int coordinate4) {
-        this.coordinate4 = coordinate4;
-    }
 
     public Color getOutlineColor() {
         return outlineColor;
     }
 
-    public void setOutlineColor(Color outlineColor) {
-        this.outlineColor = outlineColor;
-    }
 
     public Color getFillColor() {
         return fillColor;
     }
 
-    public void setFillColor(Color fillColor) {
-        this.fillColor = fillColor;
+    public void drawShape(Graphics2D graphics) {
     }
-
-    public void drawShape(Graphics2D graphics) {}
-
 
 }
 

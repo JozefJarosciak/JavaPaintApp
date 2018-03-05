@@ -6,14 +6,14 @@ public class MySquare extends MyRoundedShape {
     }
 
     @Override
-    public void drawShape(Graphics2D graphics){
+    public void drawShape(Graphics2D graphics) {
 
         // First I draw the filled rectangle
-        graphics.setColor( getFillColor() );
+        graphics.setColor(getFillColor());
         graphics.fillRect(topLeftX(), topLeftY(), width(), width());
 
         // Then I create outline
-        graphics.setColor( getOutlineColor() );
+        graphics.setColor(getOutlineColor());
         graphics.drawRect(topLeftX(), topLeftY(), width(), width());
     }
 }

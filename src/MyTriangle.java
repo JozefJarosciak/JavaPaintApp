@@ -6,20 +6,20 @@ public class MyTriangle extends MyRoundedShape {
     }
 
     @Override
-    public void drawShape(Graphics2D graphics){
+    public void drawShape(Graphics2D graphics) {
 
-        int x[] = {getX1(), getX2(), getX1()+((getX2()- getX1())/2)};
-        int y[] = {getY1(), getY1(), getY1()-((getX2()- getX1())/2)};
+        int x[] = {getX1(), getX2(), getX1() + ((getX2() - getX1()) / 2)};
+        int y[] = {getY1(), getY1(), getY1() - ((getX2() - getX1()) / 2)};
 
         int n = 3;
 
         // First I draw the filled rectangle
-        graphics.setColor( getFillColor() );
-        graphics.fillPolygon(x,y,n);
+        graphics.setColor(getFillColor());
+        graphics.fillPolygon(x, y, n);
 
         // Then I create outline
-        graphics.setColor( getOutlineColor() );
-        graphics.drawPolygon(x,y,n);
+        graphics.setColor(getOutlineColor());
+        graphics.drawPolygon(x, y, n);
 
     }
 }
