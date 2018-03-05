@@ -11,7 +11,7 @@ public class MyRectangle extends MyShape {
 
     @Override
     public void drawShape(Graphics2D graphics){
-        graphics.fillRect(getCoordinate1(),getCoordinate2(),getCoordinate3(),getCoordinate4());
-    }
+        graphics.fillRect(getCoordinate1(),getCoordinate2(),getCoordinate1(),getCoordinate2());
+}
 
 }

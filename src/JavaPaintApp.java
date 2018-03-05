@@ -72,12 +72,7 @@ public class JavaPaintApp extends JPanel {
             @Override
             public void mouseDragged(MouseEvent e) {
                 super.mouseDragged(e);
-                System.out.println("mouseDragged: " + e.getX() + ", " + e.getY());
-                // currentShape = new MyRectangle( e.getX(), e.getY(),e.getX(), e.getY(), Color.green);
-                // currentShape.setCoordinate2(e.getX());
-                // currentShape.setCoordinate4(e.getY());
-                //currentShape.drawshape(drawingPanel.getGraphics());
-                //drawingPanel.repaint();
+                //System.out.println("mouseDragged: " + e.getX() + ", " + e.getY());
             }
         });
 
@@ -85,20 +80,21 @@ public class JavaPaintApp extends JPanel {
         drawingPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+                if (comboBox1.getSelectedItem().toString() != "Select Shape") {
                 super.mouseReleased(e);
                 endPoint = e.getPoint();
-                //drawingPanel.getGraphics().drawRect((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
-
                 drawShape(selectedShape);
-                System.out.println("mouseReleased: " + e.getX() + ", " + e.getY());
+                }
+                //System.out.println("mouseReleased: " + e.getX() + ", " + e.getY());
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                startPoint = e.getPoint();
-                System.out.println("mousePressed: " + e.getX() + ", " + e.getY());
-
+                if (comboBox1.getSelectedItem().toString() != "Select Shape") {
+                    super.mousePressed(e);
+                    startPoint = e.getPoint();
+                }
+               // System.out.println("mousePressed: " + e.getX() + ", " + e.getY());
             }
 
         });
@@ -116,6 +112,8 @@ public class JavaPaintApp extends JPanel {
         graphics.setPaint(fillColor);
 
         switch (shape){
+            case "Select Shape":
+                break;
             case "Line":
                 myShape = new MyLine((int)startPoint.getX(), (int)startPoint.getY(), (int)endPoint.getX(), (int) endPoint.getY());
                 myShape.drawShape(graphics);
