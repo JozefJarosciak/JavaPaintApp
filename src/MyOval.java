@@ -1,21 +1,17 @@
 import java.awt.*;
 
 public class MyOval extends MyRoundedShape {
-    public MyOval(int x, int y, int x1, int y1, Color fillColor, Color outlineColor) {
-        super(x, y, x1, y1, fillColor, outlineColor);
+    public MyOval(int x, int y, int x1, int y1, Color color, Color fill) {
+        super(x, y, x1, y1, color, fill);
     }
 
     @Override
-    public void drawShape(Graphics2D graphics) {
-
-        // First I draw the filled MyOval
-        graphics.setColor(getFillColor());
-        graphics.fillOval(topLeftX(), topLeftY(), width(), height());
-
-        // Then I create outline
+    public void drawShape(Graphics graphics){
         graphics.setColor(getOutlineColor());
-        graphics.drawOval(topLeftX(), topLeftY(), width(), height());
-
-
+        if(!getFillColor().equals(Color.WHITE)) {
+            graphics.fillOval(getX1(), getY1(), getX2(), getY2());
+        }else {
+            graphics.drawOval(getX1(), getY1(), getX2(), getY2());
+        }
     }
 }

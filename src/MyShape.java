@@ -1,56 +1,68 @@
 import java.awt.*;
 
 abstract class MyShape {
-    private int coordinate1, coordinate2, coordinate3, coordinate4;
-    private Color outlineColor, fillColor;
+    private int x1, y1, x2, y2;
+    private Color outlineColor;
 
     //create a constructor for the myshape class instance
     public MyShape() {
-        coordinate1 = 0;
-        coordinate2 = 0;
-        coordinate3 = 0;
-        coordinate4 = 0;
+        x1 = 0;
+        y1 = 0;
+        x2 = 0;
+        y2 = 0;
+        outlineColor = Color.BLACK;
     }
 
-    public MyShape(int coordinate1, int coordinate2, int coordinate3, int coordinate4, Color fillColor, Color outlineColor) {
-        this.coordinate1 = coordinate1;
-        this.coordinate2 = coordinate2;
-        this.coordinate3 = coordinate3;
-        this.coordinate4 = coordinate4;
-        this.fillColor = fillColor;
+    public MyShape(int x1, int y1, int x2, int y2, Color outlineColor) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
         this.outlineColor = outlineColor;
     }
 
     public int getX1() {
-        return coordinate1;
+        return x1;
+    }
+
+    public void setX1(int x1) {
+        this.x1 = x1;
     }
 
     public int getY1() {
-        return coordinate2;
+        return y1;
     }
 
+    public void setY1(int y1) {
+        this.y1 = y1;
+    }
 
     public int getX2() {
-        return coordinate3;
+        return x2;
     }
 
+    public void setX2(int x2) {
+        this.x2 = x2;
+    }
 
     public int getY2() {
-        return coordinate4;
+        return y2;
     }
 
+    public void setY2(int y2) {
+        this.y2 = y2;
+    }
 
     public Color getOutlineColor() {
         return outlineColor;
     }
 
-
-    public Color getFillColor() {
-        return fillColor;
+    public void setOutlineColor(Color outlineColor) {
+        this.outlineColor = outlineColor;
     }
 
-    public void drawShape(Graphics2D graphics) {
-    }
+    public abstract void drawShape(Graphics graphics);
+
 
 }
 

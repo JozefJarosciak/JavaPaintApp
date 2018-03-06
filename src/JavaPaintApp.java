@@ -1,189 +1,111 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class JavaPaintApp extends JPanel {
+public class JavaPaintApp {
+    JButton clearButton, clearAllButton, redoButton, undoButton, fillButton, outlineButton;
+    JComboBox<String> shapeCombo;
+    JToolBar menu;
+    DrawingPanel drawingPanel;
 
-    JButton selectOutlineColorButton;
-    JButton selectFillColorButton;
-    JComboBox comboBox1;
-    JPanel mainpanel;
-    JPanel drawingPanel;
-    JToolBar toolbar;
-    JLabel mouseCoordinates;
-    JButton clearButton;
-    Point startPoint, endPoint;
-    String selectedShape = "Line";
-    Color fillColor, outlineColor;
-    JColorChooser outlineColorChooser = new JColorChooser();
-    JColorChooser fillColorChooser = new JColorChooser();
-
-    private JavaPaintApp() {
-
-
-        selectOutlineColorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Color initialBackground = selectOutlineColorButton.getBackground();
-                outlineColor = outlineColorChooser.showDialog(null,
-                    "Shape Outline Color Picker", initialBackground);
-                if (outlineColor != null) {
-                    selectOutlineColorButton.setBackground(outlineColor);
+    ActionListener actionListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == clearButton) {
+                drawingPanel.clear();
+            } else if (e.getSource() == clearAllButton) {
+                drawingPanel.clearAll();
+            } else if (e.getSource() == redoButton) {
+                drawingPanel.redo();
+            } else if (e.getSource() == undoButton) {
+                drawingPanel.undo();
+            } else if (e.getSource() == fillButton) {
+                Color initialBackground = fillButton.getBackground();
+                drawingPanel.fillColor = JColorChooser.showDialog(null,
+                        "Shape Outline Color Picker", initialBackground);
+                if (drawingPanel.fillColor != null) {
+                    fillButton.setBackground(drawingPanel.fillColor);
                 }
-            }
-        });
 
-        selectFillColorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Color initialBackground = selectFillColorButton.getBackground();
-                fillColor = fillColorChooser.showDialog(null,
-                    "Shape Fill Color Picker", initialBackground);
-                if (fillColor != null) {
-                    selectFillColorButton.setBackground(fillColor);
+            } else if (e.getSource() == outlineButton) {
+                Color initialBackground = outlineButton.getBackground();
+                drawingPanel.outlineColor = JColorChooser.showDialog(null,
+                        "Shape Outline Color Picker", initialBackground);
+                if (drawingPanel.outlineColor != null) {
+                    outlineButton.setBackground(drawingPanel.outlineColor);
                 }
-            }
-        });
-
-        clearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clear();
-            }
-        });
-
-        comboBox1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+            } else if (e.getSource() == shapeCombo) {
                 ItemSelectable is = (ItemSelectable) e.getSource();
-                selectedShape = selectedString(is);
-            }
-        });
-
-
-        drawingPanel.addMouseMotionListener(new MouseMotionAdapter() {
-            @Override
-            public void mouseMoved(MouseEvent e) {
-                super.mouseMoved(e);
-                mouseCoordinates.setText("Mouse Coordinates: " + e.getX() + ", " + e.getY());
-
+                drawingPanel.selectedShape = selectedString(is);
             }
 
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                super.mouseDragged(e);
-                //System.out.println("mouseDragged: " + e.getX() + ", " + e.getY());
-            }
-        });
+        }
+    };
+
+    public static void main(String[] args) {
+        new JavaPaintApp().createComponents();
+    }
+
+    public void createComponents() {
+        // Setup the form details
+        JFrame frame = new JFrame("Java Paint Application");
+        Container content = frame.getContentPane();
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(700, 700);
 
 
-        drawingPanel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
-                endPoint = e.getPoint();
-                drawShape(selectedShape);
-                //System.out.println("mouseReleased: " + e.getX() + ", " + e.getY());
-            }
+        // center on page
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
+        //frame.setContentPane(new DrawingPanel());
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                startPoint = e.getPoint();
-                // System.out.println("mousePressed: " + e.getX() + ", " + e.getY());
-            }
+        drawingPanel = new DrawingPanel();
+        // create controls to select colors and shape, clear, undo etc
+        content.add(drawingPanel, BorderLayout.CENTER);
+        menu = new JToolBar("Menu", 0);
+        menu.setBorderPainted(true);
+        menu.setBorder( BorderFactory.createTitledBorder("Menu"));
+        clearButton = new JButton("Clear");
+        clearButton.addActionListener(actionListener);
+        clearAllButton = new JButton("Clear All");
+        clearAllButton.addActionListener(actionListener);
+        redoButton = new JButton("Redo");
+        redoButton.addActionListener(actionListener);
+        undoButton = new JButton("Undo");
+        undoButton.addActionListener(actionListener);
+        fillButton = new JButton("Choose");
+        fillButton.addActionListener(actionListener);
+        outlineButton = new JButton("Choose");
+        outlineButton.addActionListener(actionListener);
 
-        });
-        mainpanel.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-/*
-                outlineColorChooser.setColor(Color.getColor("#4775BB"));
-                fillColorChooser.setColor(Color.getColor("#F4F4B8"));
+        shapeCombo = new JComboBox<String>(new String[]{"Select Shape", "Line", "Rectangle", "Rounded Rectangle", "Oval", "Circle", "Triangle", "Square"});
+        shapeCombo.addActionListener(actionListener);
 
-                outlineColor = outlineColorChooser.getColor();
-                fillColor  = fillColorChooser.getColor();
-*/
-                comboBox1.requestFocusInWindow();
-            }
-        });
+        JLabel fillLabel = new JLabel(" Fill Color: ");
+        JLabel outlineLabel = new JLabel("Outline Color: ");
+        // add controls to the menu toolbar
+        menu.add(outlineLabel);
+        menu.add(outlineButton);
+        menu.add(fillLabel);
+        menu.add(fillButton);
+        menu.add(shapeCombo);
+        menu.add(clearButton);
+        menu.add(clearAllButton);
+        //menu.add(redoButton);
+        menu.add(undoButton);
+
+        // add menubar to top of frame
+        content.add(menu, BorderLayout.SOUTH);
+
+        frame.setVisible(true);
+
     }
 
     private String selectedString(ItemSelectable is) {
         Object selected[] = is.getSelectedObjects();
         return ((selected.length == 0) ? "null" : (String) selected[0]);
     }
-
-    private void drawShape(String shape) {
-        MyShape myShape;
-        Graphics2D graphics = (Graphics2D) drawingPanel.getGraphics();
-        graphics.setColor(outlineColor);
-        graphics.setPaint(fillColor);
-
-        switch (shape) {
-            case "Select Shape":
-                break;
-            case "Line":
-                myShape = new MyLine((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
-                myShape.drawShape(graphics);
-                break;
-            case "Rectangle":
-                myShape = new MyRectangle((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
-                myShape.drawShape(graphics);
-                break;
-            case "Rounded Rectangle":
-                myShape = new MyRoundedRectangle((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
-                myShape.drawShape(graphics);
-                break;
-            case "Oval":
-                myShape = new MyOval((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
-                myShape.drawShape(graphics);
-                break;
-            case "Triangle":
-                myShape = new MyTriangle((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
-                myShape.drawShape(graphics);
-                break;
-            case "Square":
-                myShape = new MySquare((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
-                myShape.drawShape(graphics);
-                break;
-            case "Circle":
-                myShape = new MyCircle((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY(), fillColor, outlineColor);
-                myShape.drawShape(graphics);
-                break;
-            default:
-                drawingPanel.getGraphics().drawLine((int) startPoint.getX(), (int) startPoint.getY(), (int) endPoint.getX(), (int) endPoint.getY());
-                break;
-        }
-    }
-
-    public void clear() {
-        Graphics2D graphics2D = (Graphics2D) drawingPanel.getGraphics();
-        graphics2D.setPaint(drawingPanel.getBackground());
-        graphics2D.fillRect(0, 0, drawingPanel.getWidth(), drawingPanel.getHeight());
-        graphics2D.setPaint(Color.black);
-        repaint();
-    }
-
-
-    public static void main(String[] args) {
-
-        // Setup the form details
-        JFrame frame = new JFrame("Java Paint Application");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setSize(650, 650);
-
-        // center on page
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
-        frame.setContentPane(new JavaPaintApp().mainpanel);
-        frame.setVisible(true);
-
-
-    }
-
-
 }
