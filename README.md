@@ -15,10 +15,10 @@ GitHub URL: https://github.com/JozefJarosciak/JavaPaintApp
 * Java 8
 
 # Screenshots
-Supported Shapes:
+* Supported Shapes:
 ![Screenshot 1](https://i.imgur.com/hjtUOX2.png)
 
-Color Picker Example:
+* Color Picker Example:
 ![Screenshot 2](https://i.imgur.com/s2xjzn4.png)
 
 # UML Diagram:
