@@ -25,9 +25,5 @@ Color Picker Example:
 Download in UML format: https://github.com/JozefJarosciak/JavaPaintApp/blob/master/Diagram.uml
 ![UML Diagram](https://i.imgur.com/NzrG2hW.png)
 
-
-# Demo
-coming soon
-
 # Licensing
 Only use for educational purposes, any code reuse must be credited back to authors.
