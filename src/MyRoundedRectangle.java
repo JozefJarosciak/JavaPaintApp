@@ -11,10 +11,10 @@ public class MyRoundedRectangle extends MyRoundedShape {
 
         // First I draw the filled rectangle
         graphics.setColor(getFillColor());
-        graphics.fillRoundRect(topLeftX(), topLeftY(), width(), height(), 20, 20);
+        graphics.fillRoundRect(getX1(), getY1(), width(), height(), 20, 20);
 
         graphics.setColor(getOutlineColor());
-        graphics.drawRoundRect(topLeftX(), topLeftY(), width(), height(), 20, 20);
+        graphics.drawRoundRect(getX1(), getY1(), width(), height(), 20, 20);
 
     }
 

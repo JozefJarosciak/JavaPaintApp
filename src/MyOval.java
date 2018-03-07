@@ -9,10 +9,10 @@ public class MyOval extends MyRoundedShape {
     public void drawShape(Graphics graphics){
         // First I draw the filled MyOval
         graphics.setColor(getFillColor());
-        graphics.fillOval(topLeftX(), topLeftY(), width(), height());
+        graphics.fillOval(getX1(), getY1(), width(), height());
 
         // Then I create outline
         graphics.setColor(getOutlineColor());
-        graphics.drawOval(topLeftX(), topLeftY(), width(), height());
+        graphics.drawOval(getX1(), getY1(), width(), height());
     }
 }

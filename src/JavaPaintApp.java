@@ -99,6 +99,9 @@ public class JavaPaintApp {
         content.add(menu, BorderLayout.SOUTH);
 
         frame.setVisible(true);
+
+        outlineButton.setBackground(Color.decode("#999999"));
+        fillButton.setBackground(Color.decode("#FFFFCC"));
         shapeCombo.requestFocusInWindow();
     }
 

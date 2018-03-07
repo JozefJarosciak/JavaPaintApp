@@ -14,10 +14,10 @@ public class MyCircle extends MyRoundedShape {
 
         // Let's draw the circle based on initial X/Y coordinates and calculated distance between start and end point
         graphics.setColor(getFillColor());
-        graphics.fillOval(topLeftX(), topLeftY(), diameter, diameter);
+        graphics.fillOval(getX1(), getY1(), diameter, diameter);
 
         graphics.setColor(getOutlineColor());
-        graphics.drawOval(topLeftX(), topLeftY(), diameter, diameter);
+        graphics.drawOval(getX1(), getY1(), diameter, diameter);
 
     }
 }

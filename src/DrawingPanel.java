@@ -11,8 +11,10 @@ public class DrawingPanel extends JPanel{
     private LinkedList<MyShape> myShapes; // stack of shapes
     private LinkedList<MyShape> clearedShapes; // stack of cleared shapes
     private int oldX, oldY, newX, newY;
-    protected static Color fillColor;
-    protected static Color outlineColor = Color.BLACK;
+    protected static Color fillColor = Color.decode("#FFFFCC");
+    protected static Color outlineColor = Color.decode("#999999");
+
+
     private String lastAction = "Add";
 
     JLabel mouseCoordinates;

@@ -11,13 +11,11 @@ public class MyRectangle extends MyRoundedShape {
 
     @Override
     public void drawShape(Graphics graphics){
-        // First I draw the filled rectangle
         graphics.setColor(getFillColor());
-        graphics.fillRect(topLeftX(), topLeftY(), width(), height());
+        graphics.fillRect(getX1(), getY1(), width(), height());
 
-        // Then I create outline
         graphics.setColor(getOutlineColor());
-        graphics.drawRect(topLeftX(), topLeftY(), width(), height());
+        graphics.drawRect(getX1(), getY1(), width(), height());
     }
 
 }

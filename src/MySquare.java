@@ -8,9 +8,9 @@ public class MySquare extends MyRoundedShape {
     @Override
     public void drawShape(Graphics graphics) {
         graphics.setColor(getFillColor());
-        graphics.fillRect(topLeftX(), topLeftY(), width(), width());
+        graphics.fillRect(getX1(), getY1(), width(), width());
 
         graphics.setColor(getOutlineColor());
-        graphics.drawRect(topLeftX(), topLeftY(), width(), width());
+        graphics.drawRect(getX1(), getY1(), width(), width());
     }
 }
