@@ -9,21 +9,24 @@ GitHub URL: https://github.com/JozefJarosciak/JavaPaintApp
 * The object should be drawn in a continuous motion of the mouse; dragging will set the size of the shape. 
 * For instance, when the user presses a button, the program captures the first coordinate, and on the release of mouse, the shape is drawn on the interface. While the user is moving mouse when the button is already down, the interface should show the updated shape.
 * Supported 7 Shapes:  Line, Circle, Oval, Rectangle, Rounded Rectangle, Square, Triangle.
-* Future Addons to consider: Eraser, Undo, Redo, Cut, Copy, Paste and others. 
+* Undo button
+* Redo button
+* Clear All button
+* Future functionality to consider: Cut, Copy, Paste and others. 
 
 # Requirements
 * Java 8
 
 # Screenshots
 * Supported Shapes:
-![Screenshot 1](https://i.imgur.com/hjtUOX2.png)
+![Screenshot 1](https://i.imgur.com/R1gdsXj.png)
 
 * Color Picker Example:
-![Screenshot 2](https://i.imgur.com/s2xjzn4.png)
+![Screenshot 2](https://i.imgur.com/YOkDlDO.png)
 
 # UML Diagram:
 Download in UML format: https://github.com/JozefJarosciak/JavaPaintApp/blob/master/Diagram.uml
-![UML Diagram](https://i.imgur.com/NzrG2hW.png)
+![UML Diagram](https://i.imgur.com/KpZ0AYv.png)
 
 # Licensing
 Only use for educational purposes, any code reuse must be credited back to authors.
