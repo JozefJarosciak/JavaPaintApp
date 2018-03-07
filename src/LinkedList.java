@@ -23,7 +23,7 @@ public class LinkedList<T> {
 
     // Adds a node to the front of the linked list.
     public void addFront( T element ) {
-        front = new ListNode<T>( element, front );
+        front = new ListNode<>(element, front);
         numberOfNodes++;
     }
 
@@ -57,14 +57,14 @@ public class LinkedList<T> {
         {
             node = node.getNext();
         }
-        node.setNext(new ListNode<T>((T)element, null));
+        node.setNext(new ListNode<>(element, null));
     }
 
     // Return array filled with T objects
     @SuppressWarnings("unchecked")
     public ArrayList<T> getArray() {
 
-        ArrayList<T> shapeArray=new ArrayList<T>();
+        ArrayList<T> shapeArray=new ArrayList<>();
 
         ListNode<T> node=front;
         while (node!=null)

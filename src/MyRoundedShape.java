@@ -19,23 +19,7 @@ abstract class MyRoundedShape extends MyShape {
         this.fillColor = fillColor;
     }
 
-    /**
-     * gets the upper left x
-     */
-    public int topLeftX()
-    {
-        return Math.min(getX1(), getY1());
-    }
-
-    /**
-     * gets the upper left y
-     */
-    public int topLeftY()
-    {
-        return Math.min(getX2(), getY2());
-    }
-
-    /**
+      /**
      * gets width
      */
     public int width()

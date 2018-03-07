@@ -5,23 +5,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
-public class DrawingPanel extends JPanel{
+class DrawingPanel extends JPanel{
     private MyShape currentShape;
-    protected static String selectedShape = "Line";
+    static String selectedShape = "Line";
     private LinkedList<MyShape> myShapes; // stack of shapes
     private LinkedList<MyShape> clearedShapes; // stack of cleared shapes
     private int oldX, oldY, newX, newY;
-    protected static Color fillColor = Color.decode("#FFFFCC");
-    protected static Color outlineColor = Color.decode("#999999");
+    static Color fillColor = Color.decode("#FFFFCC");
+    static Color outlineColor = Color.decode("#999999");
 
 
     private String lastAction = "Add";
 
-    JLabel mouseCoordinates;
+    private JLabel mouseCoordinates;
 
-    public DrawingPanel(){
-        myShapes = new LinkedList<MyShape>(); //initialize myShapes dynamic stack
-        clearedShapes = new LinkedList<MyShape>(); //initialize clearedShapes dynamic stack
+    DrawingPanel(){
+        myShapes = new LinkedList<>(); //initialize myShapes dynamic stack
+        clearedShapes = new LinkedList<>(); //initialize clearedShapes dynamic stack
         mouseCoordinates = new JLabel("");
 
         setLayout(new BorderLayout()); //sets layout to border layout; default is flow layout
@@ -126,7 +126,7 @@ public class DrawingPanel extends JPanel{
     private void drawShape(String shape, MouseEvent event){
         switch (shape){
             case "Line":
-                currentShape = new MyLine(event.getX(), event.getY(), event.getX(), event.getY(), this.outlineColor);
+                currentShape = new MyLine(event.getX(), event.getY(), event.getX(), event.getY(), outlineColor);
                 break;
             case "Rectangle":
                 currentShape = new MyRectangle(event.getX(), event.getY(), event.getX(), event.getY(),outlineColor, fillColor);

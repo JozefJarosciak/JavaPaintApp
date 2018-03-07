@@ -3,13 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class JavaPaintApp {
-    JButton undoButton, clearAllButton, redoButton, fillButton, outlineButton;
-    JComboBox<String> shapeCombo;
-    JToolBar menu;
-    DrawingPanel drawingPanel;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-    ActionListener actionListener = new ActionListener() {
+public class JavaPaintApp {
+    private JButton undoButton, clearAllButton, redoButton, fillButton, outlineButton;
+    private JComboBox<String> shapeCombo;
+    private DrawingPanel drawingPanel;
+
+    private ActionListener actionListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == undoButton) {
@@ -22,22 +23,22 @@ public class JavaPaintApp {
                 drawingPanel.undo();
             } else if (e.getSource() == fillButton) {
                 Color initialBackground = fillButton.getBackground();
-                drawingPanel.fillColor = JColorChooser.showDialog(null,
+                DrawingPanel.fillColor = JColorChooser.showDialog(null,
                         "Shape Outline Color Picker", initialBackground);
-                if (drawingPanel.fillColor != null) {
-                    fillButton.setBackground(drawingPanel.fillColor);
+                if (DrawingPanel.fillColor != null) {
+                    fillButton.setBackground(DrawingPanel.fillColor);
                 }
 
             } else if (e.getSource() == outlineButton) {
                 Color initialBackground = outlineButton.getBackground();
-                drawingPanel.outlineColor = JColorChooser.showDialog(null,
+                DrawingPanel.outlineColor = JColorChooser.showDialog(null,
                         "Shape Outline Color Picker", initialBackground);
-                if (drawingPanel.outlineColor != null) {
-                    outlineButton.setBackground(drawingPanel.outlineColor);
+                if (DrawingPanel.outlineColor != null) {
+                    outlineButton.setBackground(DrawingPanel.outlineColor);
                 }
             } else if (e.getSource() == shapeCombo) {
                 ItemSelectable is = (ItemSelectable) e.getSource();
-                drawingPanel.selectedShape = selectedString(is);
+                DrawingPanel.selectedShape = selectedString(is);
             }
 
         }
@@ -47,12 +48,12 @@ public class JavaPaintApp {
         new JavaPaintApp().createComponents();
     }
 
-    public void createComponents() {
+    private void createComponents() {
         // Setup the form details
         JFrame frame = new JFrame("Java Paint Application");
         Container content = frame.getContentPane();
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setSize(700, 700);
 
 
@@ -64,7 +65,7 @@ public class JavaPaintApp {
         drawingPanel = new DrawingPanel();
         // create controls to select colors and shape, clear, undo etc
         content.add(drawingPanel, BorderLayout.CENTER);
-        menu = new JToolBar("Menu", 0);
+        JToolBar menu = new JToolBar("Menu", 0);
         menu.setBorderPainted(true);
         menu.setBorder( BorderFactory.createTitledBorder("Menu"));
         undoButton = new JButton("Undo");
@@ -78,7 +79,7 @@ public class JavaPaintApp {
         outlineButton = new JButton("    ");
         outlineButton.addActionListener(actionListener);
 
-        shapeCombo = new JComboBox<String>(new String[]{"Line", "Rectangle", "Rounded Rectangle", "Oval", "Circle", "Triangle", "Square"});
+        shapeCombo = new JComboBox<>(new String[]{"Line", "Rectangle", "Rounded Rectangle", "Oval", "Circle", "Triangle", "Square"});
         shapeCombo.addActionListener(actionListener);
 
         JLabel fillLabel = new JLabel(" Fill Color: ");
@@ -95,7 +96,7 @@ public class JavaPaintApp {
         menu.add(redoButton);
         menu.add(clearAllButton);
 
-        // add menubar to top of frame
+        // add menu bar to top of frame
         content.add(menu, BorderLayout.SOUTH);
 
         frame.setVisible(true);
