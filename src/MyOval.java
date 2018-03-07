@@ -7,11 +7,12 @@ public class MyOval extends MyRoundedShape {
 
     @Override
     public void drawShape(Graphics graphics){
+        // First I draw the filled MyOval
+        graphics.setColor(getFillColor());
+        graphics.fillOval(topLeftX(), topLeftY(), width(), height());
+
+        // Then I create outline
         graphics.setColor(getOutlineColor());
-        if(!getFillColor().equals(Color.WHITE)) {
-            graphics.fillOval(getX1(), getY1(), getX2(), getY2());
-        }else {
-            graphics.drawOval(getX1(), getY1(), getX2(), getY2());
-        }
+        graphics.drawOval(topLeftX(), topLeftY(), width(), height());
     }
 }

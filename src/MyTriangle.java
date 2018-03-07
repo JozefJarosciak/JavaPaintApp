@@ -13,7 +13,6 @@ public class MyTriangle extends MyRoundedShape {
 
         int n = 3;
 
-        // First I draw the filled rectangle
         graphics.setColor(getFillColor());
         graphics.fillPolygon(x, y, n);
 

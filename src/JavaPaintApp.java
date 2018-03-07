@@ -1,11 +1,10 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JavaPaintApp {
-    JButton clearButton, clearAllButton, redoButton, undoButton, fillButton, outlineButton;
+    JButton undoButton, clearAllButton, redoButton, fillButton, outlineButton;
     JComboBox<String> shapeCombo;
     JToolBar menu;
     DrawingPanel drawingPanel;
@@ -13,7 +12,7 @@ public class JavaPaintApp {
     ActionListener actionListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == clearButton) {
+            if (e.getSource() == undoButton) {
                 drawingPanel.clear();
             } else if (e.getSource() == clearAllButton) {
                 drawingPanel.clearAll();
@@ -68,40 +67,39 @@ public class JavaPaintApp {
         menu = new JToolBar("Menu", 0);
         menu.setBorderPainted(true);
         menu.setBorder( BorderFactory.createTitledBorder("Menu"));
-        clearButton = new JButton("Clear");
-        clearButton.addActionListener(actionListener);
+        undoButton = new JButton("Undo");
+        undoButton.addActionListener(actionListener);
         clearAllButton = new JButton("Clear All");
         clearAllButton.addActionListener(actionListener);
         redoButton = new JButton("Redo");
         redoButton.addActionListener(actionListener);
-        undoButton = new JButton("Undo");
-        undoButton.addActionListener(actionListener);
-        fillButton = new JButton("Choose");
+        fillButton = new JButton("    ");
         fillButton.addActionListener(actionListener);
-        outlineButton = new JButton("Choose");
+        outlineButton = new JButton("    ");
         outlineButton.addActionListener(actionListener);
 
-        shapeCombo = new JComboBox<String>(new String[]{"Select Shape", "Line", "Rectangle", "Rounded Rectangle", "Oval", "Circle", "Triangle", "Square"});
+        shapeCombo = new JComboBox<String>(new String[]{"Line", "Rectangle", "Rounded Rectangle", "Oval", "Circle", "Triangle", "Square"});
         shapeCombo.addActionListener(actionListener);
 
         JLabel fillLabel = new JLabel(" Fill Color: ");
         JLabel outlineLabel = new JLabel("Outline Color: ");
+        JLabel selectShapeLabel = new JLabel("Select Shape: ");
         // add controls to the menu toolbar
         menu.add(outlineLabel);
         menu.add(outlineButton);
         menu.add(fillLabel);
         menu.add(fillButton);
+        menu.add(selectShapeLabel);
         menu.add(shapeCombo);
-        menu.add(clearButton);
-        menu.add(clearAllButton);
-        //menu.add(redoButton);
         menu.add(undoButton);
+        menu.add(redoButton);
+        menu.add(clearAllButton);
 
         // add menubar to top of frame
         content.add(menu, BorderLayout.SOUTH);
 
         frame.setVisible(true);
-
+        shapeCombo.requestFocusInWindow();
     }
 
     private String selectedString(ItemSelectable is) {
